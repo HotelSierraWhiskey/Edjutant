@@ -1,5 +1,5 @@
-from flask import Blueprint
-
+from flask import Blueprint, render_template
+import os
 
 admin_blueprint = Blueprint(
     'admin', __name__, url_prefix='/admin', template_folder='templates')
@@ -7,4 +7,4 @@ admin_blueprint = Blueprint(
 
 @admin_blueprint.route('/')
 def admin_dashboard():
-    return "<h1>Admin</h1>"
+    return render_template('admin/admin.html')

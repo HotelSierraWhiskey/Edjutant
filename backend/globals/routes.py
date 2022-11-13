@@ -5,6 +5,11 @@ global_blueprint = Blueprint(
     'global', __name__, url_prefix='/', template_folder='templates')
 
 
+@global_blueprint.route('/')
+def home():
+    return render_template('home.html') 
+
+
 @global_blueprint.route('/register')
 def register():
     return render_template('register.html')
