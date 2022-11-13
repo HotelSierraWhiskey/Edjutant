@@ -1,24 +1,20 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from .config.config import Config
+from .globals.routes import global_blueprint
 
 
 def create_app(config):
     app = Flask(__name__)
 
-    if config == 'dev':
-        from config.development import Development
-        config = Development
-    if config == 'prod':
-        from config.production import Production
-        config = Production
-
     with app.app_context():
 
-        app.config.from_object(config)
+        app.config.from_object(Config(config))
 
         from .views.admin.routes import admin_blueprint
         from .views.instructor.routes import instructor_blueprint
 
+        app.register_blueprint(global_blueprint)
         app.register_blueprint(admin_blueprint)
         app.register_blueprint(instructor_blueprint)
 

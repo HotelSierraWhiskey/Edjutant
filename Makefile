@@ -1,5 +1,8 @@
-dev:
-	flask --app 'backend:create_app("dev")' run --host=0.0.0.0
+MAKEFLAGS += -s
 
-prod:
-	flask --app 'backend:create_app("prod")' run
+dev:
+	flask --app 'backend:create_app("development")' run --host=0.0.0.0
+
+test:
+	flask --app 'backend:create_app("test")' run --host=0.0.0.0
+
